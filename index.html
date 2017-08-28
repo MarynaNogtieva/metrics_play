@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson1 KnokcoutJs</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+  <div style="width:40%; display:inline-block;">
+    <input type="text" data-bind="value: id" /><br />
+    <input type ="text" data-bind="value: title" /><br />
+    <input type ="text" data-bind="value: owner" /><br />
+    <textarea type ="text" data-bind="value: operational_description" ></textarea><br />
+    <div data-bind="template: {name: 'op-metric-template', foreach: operational_metrcis}">  </div>
+    <button data-bind="click: addOpMetric, enable: operational_metrcis().length < 4">Add another metric</button>
+  </div>
+
+  <div style="width:40%; display:inline-block;">
+    <div data-bind="template: {name: 'sat-metric-template', foreach: satisfaction_metrics}">
+    </div>
+    <button data-bind="click: addSatMetric, enable: satisfaction_metrics().length < 2">Add satisfaction metric</button>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Highcharts-->
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<!-- knockout -->
+  <script type="text/javascript" src="lib/knockout.js"></script>
+  <!-- templates -->
+  <script type="text/html" id="op-metric-template">
+
+    <input type="text" data-bind="value: operational_name" maxlength="30"/>
+    <input type ="text" data-bind="value: formattedValue" maxlength="7"/>
+    <!-- data-bind="click: $parent.removeMetric" -->
+    <a href="#" data-bind="click: $parent.removeOpMetric">Remove</a> <br />
+
+  </script>
+
+  <script type="text/html" id="sat-metric-template">
+   <div data-bind="attr: {id:'container' + ($index() + 1)}">
+     hi
+   </div>
+    <input type="text" data-bind="value: satisfaction_value" maxlength="30"/><br />
+    <textarea type ="text" data-bind="value: satisfaction_description" maxlength="30"></textarea><br />
+    <!-- data-bind="click: $parent.removeMetric" -->
+    <a href="#" data-bind="click: $parent.removeSatMetric">Remove</a> <br />
+
+  </script>
+
+
+  <script type="text/javascript" src="main.js"></script>
+</body>
+</html>
